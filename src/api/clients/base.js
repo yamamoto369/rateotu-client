@@ -104,7 +104,6 @@ class APIClient {
             this.constructor.forceLogout();
           });
       }
-
       // Create a new promise that will retry the failed request (with old config and a new access token)
       const retryRequest = new Promise(resolve => {
         addRequestToQueue(accessToken => {
@@ -184,4 +183,4 @@ class APIClient {
   }
 }
 
-export default APIClient
+export default APIClient;
