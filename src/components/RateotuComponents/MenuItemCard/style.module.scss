@@ -1,0 +1,13 @@
+@import 'assets/styles/mixins.scss';
+
+.cartBuyButton {
+  background: #4bad65;
+  color: #ffffff;
+  &:hover,
+  &:active,
+  &:focus,
+  &.active {
+    border-color: #4bad65;
+    color: #4bad65;
+  }
+}
