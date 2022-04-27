@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Card, Button, Tooltip, Avatar, Tag } from 'antd';
 import PropTypes from 'prop-types';
 import { addItemToCart } from 'redux/cart/actions';
+import { getMenuItemTagStyle } from 'utils/ui';
 import styles from './style.module.scss';
 
 const { Meta } = Card;
@@ -42,7 +43,9 @@ const MenuItemCard = ({ item, dispatchAddItemToCart }) => {
               <b>£ {item.price}</b>
             </span>
             <span className="float-right">
-              <Tag>{item.category.name.toUpperCase()}</Tag>
+              <Tag style={{ ...getMenuItemTagStyle(item.category.name.toUpperCase()) }}>
+                {item.category.name.toUpperCase()}
+              </Tag>
             </span>
           </>
         }

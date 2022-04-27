@@ -60,8 +60,14 @@ class MenuList extends React.Component {
     return (
       <>
         <div className="mb-4">
-          <CheckableTag name="Food" onChange={this.filterMenuItems} />
-          <CheckableTag name="Drink" onChange={this.filterMenuItems} />
+          <CheckableTag
+            name="FOOD"
+            onChange={this.filterMenuItems}
+          />
+          <CheckableTag
+            name="DRINK"
+            onChange={this.filterMenuItems}
+          />
         </div>
         <div className="productsCatalog">
           <div className="row">
