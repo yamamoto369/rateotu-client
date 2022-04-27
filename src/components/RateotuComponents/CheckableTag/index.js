@@ -7,7 +7,7 @@ const { CheckableTag } = Tag;
 
 class CustomCheckableTag extends React.Component {
   state = {
-    checked: true
+    checked: true,
   };
 
   handleChange = (checked) => {
@@ -17,11 +17,19 @@ class CustomCheckableTag extends React.Component {
   };
 
   render() {
+    const { checked } = this.state;
     const { name } = this.props;
 
     return (
       <CheckableTag
-        className={styles.checkableTag}
+        className={
+          // eslint-disable-next-line no-nested-ternary
+          checked
+            ? name === 'FOOD'
+              ? styles.checkableTagFood
+              : styles.checkableTagDrink
+            : styles.checkableTag
+        }
         checked={this.state.checked}
         onChange={this.handleChange}
       >
@@ -33,11 +41,11 @@ class CustomCheckableTag extends React.Component {
 
 CustomCheckableTag.propTypes = {
   name: PropTypes.string.isRequired,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 CustomCheckableTag.defaultProps = {
-  onChange: () => {}
-}
+  onChange: () => {},
+};
 
 export default CustomCheckableTag;
