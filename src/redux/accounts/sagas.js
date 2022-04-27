@@ -50,7 +50,7 @@ function* login({ credentials }) {
 
 function* setCurrentAccount() {
   yield put({
-    type: 'user/SET_STATE',
+    type: 'USER/SET_STATE',
     payload: {
       loading: true,
     },
@@ -59,7 +59,7 @@ function* setCurrentAccount() {
     const access = getAuthTokens().access;
     const decoded = jwtDecode(access);
     yield put({
-      type: 'user/SET_STATE',
+      type: 'USER/SET_STATE',
       payload: {
         username: decoded.username,
         email: decoded.email,
@@ -71,18 +71,18 @@ function* setCurrentAccount() {
     yield call(createEventListeners);
   } catch (e) {
     yield put({
-      type: 'user/SET_STATE',
+      type: 'USER/SET_STATE',
       payload: {
         loading: false,
       },
-    })
+    });
   }
 }
 
 function* logout() {
   yield removeAuthTokens();
   yield put({
-    type: 'user/SET_STATE',
+    type: 'USER/SET_STATE',
     payload: {
       username: '',
       role: 'anonymous',
@@ -92,6 +92,7 @@ function* logout() {
       loading: false,
     },
   });
+  yield put({ type: 'CART/RESET_CART' });
   yield call(deleteEventListeners);
   yield history.push('/accounts/login');
 }

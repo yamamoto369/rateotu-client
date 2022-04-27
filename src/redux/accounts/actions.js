@@ -10,7 +10,7 @@ const actionTypes = {
   USER_LOGOUT: 'USER/LOGOUT',
 
   USER_LOAD_CURRENT_ACCOUNT: 'user/LOAD_CURRENT_ACCOUNT',
-  USER_SET_STATE: 'user/SET_STATE',
+  USER_SET_STATE: 'USER/SET_STATE',
 };
 
 // Actions
