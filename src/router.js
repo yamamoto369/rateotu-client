@@ -55,28 +55,25 @@ const publicRoutes = [
   },
 ];
 
-const protectedRoutes = {
-  'userRoutes': [
-    // Menus
-    {
-     path: '/menus',
-     component: loadable(() => import('pages/menus')),
-     exact: true,
-     roles: ['customer', 'employee'],
-   },
-   // Permissions (internal)
-   {
-     path: '/forbidden',
-     component: loadable(() => import('pages/403')),
-     exact: true,
-     roles: ['customer', 'employee'],
-   }
- ],
-}
+const protectedRoutes = [
+  {
+    path: '/menu',
+    component: loadable(() => import('pages/menus')),
+    exact: true,
+    roles: ['customer', 'employee'],
+  },
+  // Permissions (internal)
+  {
+    path: '/forbidden',
+    component: loadable(() => import('pages/403')),
+    exact: true,
+    roles: ['customer', 'employee'],
+  },
+];
 
 const routes = [
   ...publicRoutes,
-  ...[...protectedRoutes.userRoutes,]
+  ...[...protectedRoutes,]
 ]
 
 class Router extends React.Component {

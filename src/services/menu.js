@@ -4,23 +4,23 @@
 export async function getLeftMenuData() {
   return [
     {
-      title: 'Menus',
+      title: 'Menu',
       key: 'menus',
-      url: '/menus',
+      url: '/menu',
       icon: 'fas fa-burger-soda fa-lg',
       hide: false,
       roles: ['customer', 'employee'],
     },
-  ]
+  ];
 }
 export async function getTopMenuData() {
   return [
     {
-      title: 'Menus',
-      key: 'menus',
-      url: '/menus',
+      title: 'Menu',
+      key: 'menu',
+      url: '/menu',
       icon: 'fas fa-burger-soda fa-lg',
       roles: ['customer', 'employee'],
     },
-  ]
+  ];
 }
