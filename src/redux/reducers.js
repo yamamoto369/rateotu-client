@@ -3,6 +3,7 @@ import { connectRouter } from 'connected-react-router'
 import { userReducer, registerReducer, loginReducer } from './accounts/reducers'
 import menuReducer from './menu/reducers'
 import settingsReducer from './settings/reducers'
+import cartReducer from './cart/reducers';
 
 export default function rootReducer(history) {
   return combineReducers({
@@ -14,5 +15,6 @@ export default function rootReducer(history) {
     }),
     menu: menuReducer,
     settings: settingsReducer,
+    cart: cartReducer
   })
 }
