@@ -11,3 +11,9 @@ export function getLayout(pathname) {
   }
   return 'main';
 }
+
+export function getMenuItemTagStyle(type) {
+  return type === 'FOOD'
+    ? { color: '#fff', backgroundColor: '#43a744' }
+    : { color: '#fff', backgroundColor: '#32cfcb' };
+}
