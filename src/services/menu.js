@@ -1,13 +1,18 @@
-// TODO: Merge everything into one function after a desired layout is choosed
-// Note: Required adjusting Menu and Breadcrumbs layout components
-
 export async function getLeftMenuData() {
   return [
     {
-      title: 'Menu',
+      title: 'Menus',
       key: 'menus',
-      url: '/menu',
+      url: '/menus',
       icon: 'fas fa-burger-soda fa-lg',
+      hide: false,
+      roles: ['customer', 'employee'],
+    },
+    {
+      title: 'Cart',
+      key: 'cart',
+      url: '/cart',
+      icon: 'fas fa-cart-arrow-down fa-lg',
       hide: false,
       roles: ['customer', 'employee'],
     },
@@ -16,10 +21,17 @@ export async function getLeftMenuData() {
 export async function getTopMenuData() {
   return [
     {
-      title: 'Menu',
-      key: 'menu',
-      url: '/menu',
+      title: 'Menus',
+      key: 'menus',
+      url: '/menus',
       icon: 'fas fa-burger-soda fa-lg',
+      roles: ['customer', 'employee'],
+    },
+    {
+      title: 'Cart',
+      key: 'cart',
+      url: '/cart',
+      icon: 'fas fa-cart-arrow-down fa-lg',
       roles: ['customer', 'employee'],
     },
   ];
