@@ -73,7 +73,7 @@ class MenuList extends React.Component {
           <div className="row">
             {menuItems.length ? (
               menuItems.map((item) => (
-                <div className="col-xl-3 col-lg-4 col-md-12 mb-2" key={item.id}>
+                <div className="col-xl-3 col-lg-4 col-md-12 mb-3" key={item.id}>
                   <MenuItemCard item={item} />
                 </div>
               ))
