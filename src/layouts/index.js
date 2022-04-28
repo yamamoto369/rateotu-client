@@ -66,7 +66,7 @@ class IndexLayout extends React.PureComponent {
     return (
       <Fragment>
         <Helmet
-          titleTemplate="Milliways | The Restaurant at the End of the Universe"
+          titleTemplate="Milliways | The Restaurant at the End of the Universe | Customer Client"
           title="Milliways - The Restaurant at the End of the Universe"
         />
         {BootstrappedLayout()}
