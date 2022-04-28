@@ -10,8 +10,8 @@ class OrderAPIClient {
     this.client = new APIClient();
   }
 
-  getOrders() {
-    return this.client.get(buildUrl(paths.ORDERS));
+  getOrders(queryParams = {}) {
+    return this.client.get(buildUrl(paths.ORDERS, { queryParams }));
   }
 
   createOrder(requestBody) {
