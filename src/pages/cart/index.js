@@ -208,7 +208,7 @@ class Cart extends React.Component {
                       onClick={this.createNewOrder}
                       disabled={cartItems.length === 0}
                     >
-                      <Icon type="check-circle-o" /> Proceed to payment
+                      <Icon type="dollar" /> Pay
                     </Button>
                   ) : (
                     <Button
