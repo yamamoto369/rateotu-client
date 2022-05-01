@@ -53,6 +53,13 @@ const publicRoutes = [
     exact: true,
     roles: ['anonymous'],
   },
+  // Permissions page (internal & external)
+  {
+    path: '/forbidden',
+    component: loadable(() => import('pages/403')),
+    exact: true,
+    roles: ['anonymous', 'customer', 'employee'],
+  },
 ];
 
 const protectedRoutes = [
@@ -65,13 +72,6 @@ const protectedRoutes = [
   {
     path: '/cart',
     component: loadable(() => import('pages/cart')),
-    exact: true,
-    roles: ['customer', 'employee'],
-  },
-  // Permissions (internal)
-  {
-    path: '/forbidden',
-    component: loadable(() => import('pages/403')),
     exact: true,
     roles: ['customer', 'employee'],
   },
