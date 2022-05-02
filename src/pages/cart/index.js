@@ -7,6 +7,7 @@ import OrderInvoice from 'components/RateotuComponents/OrderInvoice';
 import OrderAPIClient from 'api/clients/orders';
 import { formatCurrency } from 'utils/common';
 import { history } from 'index';
+import { renderItemTypeTag } from 'utils/ui';
 import styles from './style.module.scss';
 
 const { Step } = Steps;
@@ -23,7 +24,7 @@ const mapDispatchToProps = {
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
-class Cart extends React.Component {
+class CartCheckout extends React.Component {
   state = {
     currentStep: 0,
   };
@@ -83,15 +84,13 @@ class Cart extends React.Component {
             {value}
           </a>
         ),
+        width: '30%',
       },
       {
-        title: 'Image',
-        dataIndex: 'imageUrl',
-        render: (value) => (
-          <a href="#" className={styles.thumbnail}>
-            <img src={value} alt="" />
-          </a>
-        ),
+        title: 'Category',
+        dataIndex: 'category.name',
+        sorter: (a, b) => a.category.name.length - b.category.name.length,
+        render: (value) => renderItemTypeTag(value),
       },
       {
         title: 'Quantity',
@@ -109,6 +108,15 @@ class Cart extends React.Component {
         title: 'Price',
         dataIndex: 'price',
         render: (value) => `£ ${value}`,
+      },
+      {
+        title: 'Image',
+        dataIndex: 'imageUrl',
+        render: (value) => (
+          <a href="#" className={styles.thumbnail}>
+            <img src={value} alt="" />
+          </a>
+        ),
       },
       {
         title: 'Actions',
@@ -229,4 +237,4 @@ class Cart extends React.Component {
   }
 }
 
-export default Cart;
+export default CartCheckout;

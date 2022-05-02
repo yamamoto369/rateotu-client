@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import restaurantMobileLogo from 'assets/images/logo-mobile.png';
 import { formatCurrency } from 'utils/common';
+import { renderItemTypeTag } from 'utils/ui';
 import styles from './style.module.scss';
 
 const mapStateToProps = ({ cart, accounts }) => ({
@@ -24,15 +25,13 @@ class OrderInvoice extends React.Component {
             {value}
           </a>
         ),
+        width: '30%',
       },
       {
-        title: 'Image',
-        dataIndex: 'imageUrl',
-        render: (value) => (
-          <a href="#" className={styles.thumbnail}>
-            <img src={value} alt="" />
-          </a>
-        ),
+        title: 'Category',
+        dataIndex: 'category.name',
+        sorter: (a, b) => a.category.name.length - b.category.name.length,
+        render: (value) => renderItemTypeTag(value),
       },
       {
         title: 'Quantity',
@@ -42,6 +41,15 @@ class OrderInvoice extends React.Component {
         title: 'Price',
         dataIndex: 'price',
         render: (value) => `£ ${value}`,
+      },
+      {
+        title: 'Image',
+        dataIndex: 'imageUrl',
+        render: (value) => (
+          <a href="#" className={styles.thumbnail}>
+            <img src={value} alt="" />
+          </a>
+        ),
       },
     ];
 
