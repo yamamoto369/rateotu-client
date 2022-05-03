@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# 🌊 RATEOTU Customer Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📝 Overview
 
-## Available Scripts
+![auth-registration](https://user-images.githubusercontent.com/25624642/166401575-8c132560-3939-40d4-998d-17d14aff009a.gif)
+![acc-activation](https://user-images.githubusercontent.com/25624642/166405618-c2606276-1e7e-4ee2-8c50-1a765827b728.gif)
 
-In the project directory, you can run:
+![client-app-1](https://user-images.githubusercontent.com/25624642/166405584-207802bc-45dc-4f85-9743-9b8524de63c8.gif)
+![client-app-2](https://user-images.githubusercontent.com/25624642/166405611-ae4f9d17-d6e3-4db4-9511-450cf6d17190.gif)
 
-### `npm start`
+![client-staff-app-1](https://user-images.githubusercontent.com/25624642/166406192-06189a41-9a0e-4590-a125-651682389418.gif)
+![client-staff-app-2](https://user-images.githubusercontent.com/25624642/166406308-85650cdc-454d-4e57-998a-510f362df764.gif)
+![client-staff-app-3](https://user-images.githubusercontent.com/25624642/166407361-0a7b5957-8896-4a26-b36e-197f52ce3729.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![employee-logout](https://user-images.githubusercontent.com/25624642/166407612-06716519-7c04-4e75-9009-f0b1bc609b66.gif)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🏁 Requirements
 
-### `npm test`
+Make sure you have [Docker](https://docs.docker.com/get-docker/) installed on your computer.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Usage
 
-### `npm run build`
+Just run the following command at the root of app project (directory where `compose-local.yml` is located):
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+docker-compose -f compose-local.yml up --build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This will start client service inside Docker container. Once they're up and running, you can visit [http://127.0.0.1:3000/](http://127.0.0.1:3000/) to view the client customer web app in the browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+*NOTE:*
+Before you run the client make sure your server containers are already running.
 
-### `npm run eject`
+## 📰 Project Docs
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+You can read the project documentation at [http://127.0.0.1:4000/](http://127.0.0.1:4000/).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ☑️ Todo List
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [ ] Add Facebook like notifications, with a dropdown and list/feed view (to have a permament historical record of each notification)
+- [ ] Add Table order tracking
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+*NOTE:*
+This web app was developed in Windows 10 using Docker + WSL2.
 
-## Learn More
+## ©️ License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.
