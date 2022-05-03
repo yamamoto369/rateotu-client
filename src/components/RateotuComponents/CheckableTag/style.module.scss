@@ -1,0 +1,15 @@
+@import 'assets/styles/mixins.scss';
+
+.checkableTag {
+  padding: 15px 20px 15px 20px;
+}
+
+.checkableTagFood {
+  padding: 15px 20px 15px 20px;
+  background-color: #43a744;
+}
+
+.checkableTagDrink {
+  padding: 15px 20px 15px 20px;
+  background-color: #32cfcb;
+}
