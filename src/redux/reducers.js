@@ -4,6 +4,7 @@ import { userReducer, registerReducer, loginReducer } from './accounts/reducers'
 import menuReducer from './menu/reducers'
 import settingsReducer from './settings/reducers'
 import cartReducer from './cart/reducers';
+import tableReducer from './table/reducers';
 
 export default function rootReducer(history) {
   return combineReducers({
@@ -15,6 +16,7 @@ export default function rootReducer(history) {
     }),
     menu: menuReducer,
     settings: settingsReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    table: tableReducer
   })
 }

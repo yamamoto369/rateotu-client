@@ -9,12 +9,13 @@ const mapStateToProps = (state) => {
   return {
     user: state.accounts.user,
     isSettingsOpen: state.settings.isSettingsOpen,
+    table: state.table,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logout: () => dispatch(logout()),
+    logout: (table) => dispatch(logout(table)),
     dispatch,
   };
 };
@@ -35,8 +36,9 @@ class ProfileMenu extends React.Component {
   };
 
   handleLogout = (e) => {
+    const { table } = this.props;
     e.preventDefault();
-    this.props.logout();
+    this.props.logout(table);
   };
 
   render() {

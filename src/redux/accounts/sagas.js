@@ -1,7 +1,8 @@
 import { all, takeLatest, call, put, takeEvery} from 'redux-saga/effects';
 import { notification } from 'antd';
 import jwtDecode from 'jwt-decode';
-import accountsAPIClient from 'api/clients/accounts';
+import AccountsAPIClient from 'api/clients/accounts';
+import TableAPIClient from 'api/clients/tables';
 import { history } from 'index';
 import { resetCart } from 'redux/cart/actions';
 import {
@@ -22,7 +23,7 @@ import actionTypes, {
 
 function* register({ credentials }) {
   try {
-    yield call([accountsAPIClient, 'createUser'], credentials);
+    yield call([AccountsAPIClient, 'createUser'], credentials);
     yield put(registerSuccess());
     yield history.push({
       pathname: '/accounts/register/completed',
@@ -35,7 +36,7 @@ function* register({ credentials }) {
 
 function* login({ credentials }) {
   try {
-    const response = yield call([accountsAPIClient, 'createJWTTokens'], credentials);
+    const response = yield call([AccountsAPIClient, 'createJWTTokens'], credentials);
     const { access, refresh } = response.data;
     yield setAuthTokens(access, refresh);
     yield put(loginSuccess());
@@ -80,7 +81,19 @@ function* setCurrentAccount() {
   }
 }
 
-function* logout() {
+function* logout({ table }) {
+  const switchTableSeatPathParams = {
+    table_id: table.tableId,
+    id: table.seatId
+  };
+  const switchTableSeatRequestBody = { is_occupied: false };
+  yield call(
+    [TableAPIClient, 'switchTableSeat'],
+    switchTableSeatPathParams,
+    switchTableSeatRequestBody,
+  );
+  yield put({ type: 'table/RESET_STATE' });
+  yield put(resetCart());
   yield removeAuthTokens();
   yield put({
     type: 'user/SET_STATE',
@@ -93,7 +106,6 @@ function* logout() {
       loading: false,
     },
   });
-  yield put(resetCart());
   yield call(deleteEventListeners);
   yield history.push('/accounts/login');
 }

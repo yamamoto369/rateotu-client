@@ -82,8 +82,9 @@ export const loginFailure = (error) => {
   };
 };
 
-export const logout = () => {
+export const logout = (table) => {
   return {
+    table,
     type: actionTypes.USER_LOGOUT,
   };
 };
