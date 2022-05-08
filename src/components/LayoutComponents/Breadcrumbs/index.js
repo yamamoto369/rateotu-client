@@ -89,7 +89,7 @@ class Breadcrumbs extends React.Component {
     return (
       <div className={styles.breadcrumbs}>
         <div className={styles.path}>
-          <Link to="/menus" className="text-muted">
+          <Link to="/tables" className="text-muted">
             Home
           </Link>
           {breadcrumb}

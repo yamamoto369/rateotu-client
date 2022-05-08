@@ -95,7 +95,7 @@ class Router extends React.Component {
       <ConnectedRouter history={history}>
         <IndexLayout>
           <Switch>
-            <Route exact path="/" render={() => <Redirect to="/menus" />} />
+            <Route exact path="/" render={() => <Redirect to="/tables" />} />
             {routes.map(route => (
               <Route
                 path={route.path}
