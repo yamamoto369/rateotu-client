@@ -1,6 +1,14 @@
 export async function getLeftMenuData() {
   return [
     {
+      title: 'Tables',
+      key: 'tables',
+      url: '/tables',
+      icon: 'fas fa-utensils-alt fa-lg',
+      hide: false,
+      roles: ['customer', 'employee'],
+    },
+    {
       title: 'Menus',
       key: 'menus',
       url: '/menus',
@@ -20,6 +28,13 @@ export async function getLeftMenuData() {
 }
 export async function getTopMenuData() {
   return [
+    {
+      title: 'Tables',
+      key: 'tables',
+      url: '/tables',
+      icon: 'fas fa-utensils-alt fa-lg',
+      roles: ['customer', 'employee'],
+    },
     {
       title: 'Menus',
       key: 'menus',

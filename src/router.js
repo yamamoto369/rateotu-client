@@ -64,6 +64,12 @@ const publicRoutes = [
 
 const protectedRoutes = [
   {
+    path: '/tables',
+    component: loadable(() => import('pages/tables')),
+    exact: true,
+    roles: ['customer', 'employee'],
+  },
+  {
     path: '/menus',
     component: loadable(() => import('pages/menus')),
     exact: true,
