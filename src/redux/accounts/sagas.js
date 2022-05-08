@@ -1,4 +1,4 @@
-import { all, takeLatest, call, put, takeEvery} from 'redux-saga/effects';
+import { all, takeLatest, call, put, takeEvery } from 'redux-saga/effects';
 import { notification } from 'antd';
 import jwtDecode from 'jwt-decode';
 import AccountsAPIClient from 'api/clients/accounts';
@@ -10,16 +10,15 @@ import {
   removeAuthTokens,
   getAuthTokens,
   createEventListeners,
-  deleteEventListeners
+  deleteEventListeners,
 } from 'utils/auth';
 import actionTypes, {
   registerFailure,
   registerSuccess,
   loginSuccess,
   loginFailure,
-  loadCurrentAccount
+  loadCurrentAccount,
 } from './actions';
-
 
 function* register({ credentials }) {
   try {
@@ -27,7 +26,7 @@ function* register({ credentials }) {
     yield put(registerSuccess());
     yield history.push({
       pathname: '/accounts/register/completed',
-      state: { email: credentials.email }
+      state: { email: credentials.email },
     });
   } catch (e) {
     yield put(registerFailure(e.response.data));
@@ -44,7 +43,7 @@ function* login({ credentials }) {
     notification.success({
       message: 'Logged In',
       description: 'You have successfully logged in!',
-    })
+    });
   } catch (e) {
     yield put(loginFailure(e.response.data));
   }
@@ -82,17 +81,20 @@ function* setCurrentAccount() {
 }
 
 function* logout({ table }) {
-  const switchTableSeatPathParams = {
-    table_id: table.tableId,
-    id: table.seatId
-  };
-  const switchTableSeatRequestBody = { is_occupied: false };
-  yield call(
-    [TableAPIClient, 'switchTableSeat'],
-    switchTableSeatPathParams,
-    switchTableSeatRequestBody,
-  );
-  yield put({ type: 'table/RESET_STATE' });
+  const { tableId, seatId } = table;
+  if (tableId && seatId) {
+    const switchTableSeatPathParams = {
+      table_id: tableId,
+      id: seatId,
+    };
+    const switchTableSeatRequestBody = { is_occupied: false };
+    yield call(
+      [TableAPIClient, 'switchTableSeat'],
+      switchTableSeatPathParams,
+      switchTableSeatRequestBody,
+    );
+    yield put({ type: 'table/RESET_STATE' });
+  }
   yield put(resetCart());
   yield removeAuthTokens();
   yield put({
@@ -116,6 +118,6 @@ export default function* userWatcherSaga() {
     takeLatest(actionTypes.USER_LOGIN_REQUEST, login),
     takeLatest(actionTypes.USER_LOAD_CURRENT_ACCOUNT, setCurrentAccount),
     takeEvery(actionTypes.USER_LOGOUT, logout),
-    setCurrentAccount()
-  ])
+    setCurrentAccount(),
+  ]);
 }
