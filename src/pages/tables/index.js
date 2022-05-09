@@ -130,7 +130,7 @@ class RestaurantTableList extends React.Component {
                       }`}
                       hoverable
                     >
-                      {seat.isOccupied && seat.customer ? seat.customer.username : 'Free'}
+                      {seat.isOccupied && seat.customer ? seat.customer.username : seat.id}
                     </Card.Grid>
                   </Popconfirm>
                 ))}
