@@ -57,7 +57,7 @@ class IndexLayout extends React.PureComponent {
       }
       // redirect to menus page when user on login page and authorized
       if (isLoginLayout && isUserAuthorized) {
-        return <Redirect to="/menus" />
+        return <Redirect to="/tables" />
       }
       // in other case render previously set layout
       return <Container>{children}</Container>

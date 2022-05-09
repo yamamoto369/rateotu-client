@@ -1,7 +1,8 @@
-import { all, takeLatest, call, put, takeEvery} from 'redux-saga/effects';
+import { all, takeLatest, call, put, takeEvery } from 'redux-saga/effects';
 import { notification } from 'antd';
 import jwtDecode from 'jwt-decode';
-import accountsAPIClient from 'api/clients/accounts';
+import AccountsAPIClient from 'api/clients/accounts';
+import TableAPIClient from 'api/clients/tables';
 import { history } from 'index';
 import { resetCart } from 'redux/cart/actions';
 import {
@@ -9,24 +10,23 @@ import {
   removeAuthTokens,
   getAuthTokens,
   createEventListeners,
-  deleteEventListeners
+  deleteEventListeners,
 } from 'utils/auth';
 import actionTypes, {
   registerFailure,
   registerSuccess,
   loginSuccess,
   loginFailure,
-  loadCurrentAccount
+  loadCurrentAccount,
 } from './actions';
-
 
 function* register({ credentials }) {
   try {
-    yield call([accountsAPIClient, 'createUser'], credentials);
+    yield call([AccountsAPIClient, 'createUser'], credentials);
     yield put(registerSuccess());
     yield history.push({
       pathname: '/accounts/register/completed',
-      state: { email: credentials.email }
+      state: { email: credentials.email },
     });
   } catch (e) {
     yield put(registerFailure(e.response.data));
@@ -35,7 +35,7 @@ function* register({ credentials }) {
 
 function* login({ credentials }) {
   try {
-    const response = yield call([accountsAPIClient, 'createJWTTokens'], credentials);
+    const response = yield call([AccountsAPIClient, 'createJWTTokens'], credentials);
     const { access, refresh } = response.data;
     yield setAuthTokens(access, refresh);
     yield put(loginSuccess());
@@ -43,7 +43,7 @@ function* login({ credentials }) {
     notification.success({
       message: 'Logged In',
       description: 'You have successfully logged in!',
-    })
+    });
   } catch (e) {
     yield put(loginFailure(e.response.data));
   }
@@ -80,7 +80,22 @@ function* setCurrentAccount() {
   }
 }
 
-function* logout() {
+function* logout({ table }) {
+  const { tableId, seatId } = table;
+  if (tableId && seatId) {
+    const switchTableSeatPathParams = {
+      table_id: tableId,
+      id: seatId,
+    };
+    const switchTableSeatRequestBody = { is_occupied: false };
+    yield call(
+      [TableAPIClient, 'switchTableSeat'],
+      switchTableSeatPathParams,
+      switchTableSeatRequestBody,
+    );
+    yield put({ type: 'table/RESET_STATE' });
+  }
+  yield put(resetCart());
   yield removeAuthTokens();
   yield put({
     type: 'user/SET_STATE',
@@ -93,7 +108,6 @@ function* logout() {
       loading: false,
     },
   });
-  yield put(resetCart());
   yield call(deleteEventListeners);
   yield history.push('/accounts/login');
 }
@@ -104,6 +118,6 @@ export default function* userWatcherSaga() {
     takeLatest(actionTypes.USER_LOGIN_REQUEST, login),
     takeLatest(actionTypes.USER_LOAD_CURRENT_ACCOUNT, setCurrentAccount),
     takeEvery(actionTypes.USER_LOGOUT, logout),
-    setCurrentAccount()
-  ])
+    setCurrentAccount(),
+  ]);
 }

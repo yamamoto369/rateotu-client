@@ -12,15 +12,16 @@ import styles from './style.module.scss';
 
 const { Step } = Steps;
 
-const mapStateToProps = ({ cart }) => ({
+const mapStateToProps = ({ cart, table }) => ({
   cartItems: cart.cartItems,
   cartTotal: cart.cartTotal,
+  table: table.tableId,
 });
 
 const mapDispatchToProps = {
   dispatchRemoveItemFromCart: removeItemFromCart,
   dispatchUpdateCartItemQuantity: updateCartItemQuantity,
-  dispatchResetCart: resetCart
+  dispatchResetCart: resetCart,
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -30,11 +31,13 @@ class CartCheckout extends React.Component {
   };
 
   createNewOrder = () => {
-    const { cartTotal, cartItems, dispatchResetCart } = this.props;
+    const { cartTotal, cartItems, table, dispatchResetCart } = this.props;
     const requestBody = {
       total: cartTotal,
-      order_items: cartItems
+      order_items: cartItems,
+      table,
     };
+
     OrderAPIClient.createOrder(requestBody)
       .then((response) => {
         if (response.status === 201) {
@@ -49,7 +52,7 @@ class CartCheckout extends React.Component {
           notification.error({
             message: 'Error Occured',
             description: 'Ooops, something went wrong on the server',
-            duration: 10
+            duration: 10,
           });
         }
       });
